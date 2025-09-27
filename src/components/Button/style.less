@@ -1,91 +1,166 @@
-// 按钮组件样式
+// Momo UI Button 组件样式 - 基于设计图规范
 
-.neu-button {
-  .neumorphism-raised();
-  .center-flex();
+// ================================
+// 按钮基础样式
+// ================================
+
+.momo-button {
+  .button-base();
   
-  position: relative;
-  display: inline-flex;
-  padding: @spacing-sm @spacing-lg;
-  font-family: @font-family;
-  font-size: @font-size-md;
-  font-weight: @font-weight-medium;
-  color: @text-primary;
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  vertical-align: middle;
+  // 默认样式 - 新拟物化外观
+  background: @color-bg-primary;
+  color: @color-text-primary;
   
+  // ================================
   // 尺寸变体
+  // ================================
+  
   &--small {
-    padding: @spacing-xs @spacing-md;
-    font-size: @font-size-sm;
-    height: @height-sm;
-    border-radius: @border-radius-sm;
+    .button-size(small);
   }
   
   &--medium {
-    padding: @spacing-sm @spacing-lg;
-    font-size: @font-size-md;
-    height: @height-md;
-    border-radius: @border-radius-md;
+    .button-size(medium);
   }
   
   &--large {
-    padding: @spacing-md @spacing-xl;
-    font-size: @font-size-lg;
-    height: @height-lg;
-    border-radius: @border-radius-lg;
+    .button-size(large);
   }
   
-  // 类型变体
-  &--primary {
-    color: @text-primary;
-    .text-shadow-light();
-  }
+  // ================================
+  // 填充按钮类型 (Filled Buttons)
+  // ================================
   
-  &--secondary {
-    color: @text-secondary;
-    .text-shadow-light();
-    opacity: 0.8;
-  }
-  
-  &--success {
-    color: @success-color;
-    .text-shadow-light();
+  &--filled {
+    &.momo-button--primary {
+      .button-filled(@color-primary);
+    }
     
-    &:hover {
-      color: darken(@success-color, 10%);
+    &.momo-button--info {
+      .button-filled(@color-info);
+    }
+    
+    &.momo-button--success {
+      .button-filled(@color-success);
+    }
+    
+    &.momo-button--warning {
+      .button-filled(@color-warning);
+    }
+    
+    &.momo-button--danger {
+      .button-filled(@color-danger);
     }
   }
   
-  &--warning {
-    color: @warning-color;
-    .text-shadow-light();
+  // ================================
+  // 文本按钮类型 (Text Buttons)
+  // ================================
+  
+  &--text {
+    &.momo-button--primary {
+      .button-text(@color-primary);
+    }
     
-    &:hover {
-      color: darken(@warning-color, 10%);
+    &.momo-button--info {
+      .button-text(@color-info);
+    }
+    
+    &.momo-button--success {
+      .button-text(@color-success);
+    }
+    
+    &.momo-button--warning {
+      .button-text(@color-warning);
+    }
+    
+    &.momo-button--danger {
+      .button-text(@color-danger);
     }
   }
   
-  &--error {
-    color: @error-color;
-    .text-shadow-light();
+  // ================================
+  // 图标按钮 (Icon Buttons)
+  // ================================
+  
+  &--icon {
+    &.momo-button--small {
+      .button-circle(small);
+    }
     
-    &:hover {
-      color: darken(@error-color, 10%);
+    &.momo-button--medium {
+      .button-circle(medium);
+    }
+    
+    &.momo-button--large {
+      .button-circle(large);
+    }
+    
+    // 图标按钮的填充变体
+    &.momo-button--filled {
+      &.momo-button--primary {
+        .button-filled(@color-primary);
+      }
+      
+      &.momo-button--info {
+        .button-filled(@color-info);
+      }
+      
+      &.momo-button--success {
+        .button-filled(@color-success);
+      }
+      
+      &.momo-button--warning {
+        .button-filled(@color-warning);
+      }
+      
+      &.momo-button--danger {
+        .button-filled(@color-danger);
+      }
     }
   }
   
-  // 状态
-  &--disabled {
-    .button-disabled();
+  // ================================
+  // 浮动操作按钮 (Floating Action Button)
+  // ================================
+  
+  &--floating {
+    .button-floating();
+    .button-filled(@color-primary);
+    
+    // 浮动按钮的颜色变体
+    &.momo-button--info {
+      .button-filled(@color-info);
+    }
+    
+    &.momo-button--success {
+      .button-filled(@color-success);
+    }
+    
+    &.momo-button--warning {
+      .button-filled(@color-warning);
+    }
+    
+    &.momo-button--danger {
+      .button-filled(@color-danger);
+    }
   }
+  
+  // ================================
+  // 特殊状态
+  // ================================
   
   &--loading {
-    .button-disabled();
+    position: relative;
+    pointer-events: none;
     
-    &::before {
+    // 隐藏文本内容
+    & > * {
+      opacity: 0;
+    }
+    
+    // 加载动画
+    &::after {
       content: '';
       position: absolute;
       top: 50%;
@@ -93,89 +168,180 @@
       width: 16px;
       height: 16px;
       margin: -8px 0 0 -8px;
-      border: 2px solid @text-secondary;
+      border: 2px solid currentColor;
       border-top-color: transparent;
       border-radius: 50%;
-      animation: neu-button-loading 1s linear infinite;
+      animation: momo-button-spin 0.8s linear infinite;
+    }
+    
+    // 小尺寸加载器
+    &.momo-button--small::after {
+      width: 12px;
+      height: 12px;
+      margin: -6px 0 0 -6px;
+      border-width: 1.5px;
+    }
+    
+    // 大尺寸加载器
+    &.momo-button--large::after {
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border-width: 2.5px;
     }
   }
   
-  // 圆形按钮
-  &--round {
-    border-radius: 50%;
-    padding: @spacing-md;
-    width: @height-md;
-    height: @height-md;
-    
-    &.neu-button--small {
-      width: @height-sm;
-      height: @height-sm;
-      padding: @spacing-xs;
-    }
-    
-    &.neu-button--large {
-      width: @height-lg;
-      height: @height-lg;
-      padding: @spacing-lg;
-    }
-  }
-  
+  // ================================
   // 块级按钮
+  // ================================
+  
   &--block {
-    display: flex;
     width: 100%;
+    display: flex;
   }
   
-  // 幽灵按钮（只有边框）
-  &--ghost {
-    background: transparent;
-    box-shadow: @shadow-inset-sm;
+  // ================================
+  // 图标和文本布局
+  // ================================
+  
+  // 带图标的按钮
+  &__icon {
+    flex-shrink: 0;
+    line-height: 1;
     
-    &:hover {
-      box-shadow: @shadow-inset;
+    // 图标在左侧
+    &--left {
+      margin-right: @spacing-sm;
     }
     
-    &:active {
-      box-shadow: @shadow-raised-sm;
+    // 图标在右侧
+    &--right {
+      margin-left: @spacing-sm;
     }
+    
+    // 仅图标模式
+    &--only {
+      margin: 0;
+    }
+  }
+  
+  // 按钮文本
+  &__text {
+    flex: 1;
+    line-height: inherit;
   }
 }
 
+// ================================
 // 按钮组
-.neu-button-group {
+// ================================
+
+.momo-button-group {
   display: inline-flex;
   
-  .neu-button {
-    border-radius: 0;
-    margin-left: -1px;
+  .momo-button {
+    position: relative;
+    z-index: 1;
     
-    &:first-child {
-      border-top-left-radius: @border-radius-md;
-      border-bottom-left-radius: @border-radius-md;
-      margin-left: 0;
+    &:not(:first-child) {
+      margin-left: -1px;
     }
     
-    &:last-child {
-      border-top-right-radius: @border-radius-md;
-      border-bottom-right-radius: @border-radius-md;
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
     }
     
-    &:only-child {
-      border-radius: @border-radius-md;
+    &:first-child:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
     
-    &:hover {
-      z-index: 1;
+    &:last-child:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      z-index: 2;
+    }
+  }
+  
+  // 垂直按钮组
+  &--vertical {
+    flex-direction: column;
+    
+    .momo-button {
+      &:not(:first-child) {
+        margin-left: 0;
+        margin-top: -1px;
+      }
+      
+      &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+      }
+      
+      &:first-child:not(:last-child) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: @button-radius-md;
+      }
+      
+      &:last-child:not(:first-child) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: @button-radius-md;
+      }
     }
   }
 }
 
-// 加载动画
-@keyframes neu-button-loading {
+// ================================
+// 按钮内容布局
+// ================================
+
+.momo-button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: @spacing-sm;
+  width: 100%;
+  height: 100%;
+}
+
+// ================================
+// 动画定义
+// ================================
+
+@keyframes momo-button-spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
+}
+
+// ================================
+// 兼容性类名 (向后兼容)
+// ================================
+
+// 为了保持向后兼容，保留原有的 neu-button 类名
+.neu-button {
+  &:extend(.momo-button);
+  
+  &--small:extend(.momo-button--small) {}
+  &--medium:extend(.momo-button--medium) {}
+  &--large:extend(.momo-button--large) {}
+  
+  &--primary:extend(.momo-button--filled.momo-button--primary) {}
+  &--secondary:extend(.momo-button--text.momo-button--primary) {}
+  &--success:extend(.momo-button--filled.momo-button--success) {}
+  &--warning:extend(.momo-button--filled.momo-button--warning) {}
+  &--error:extend(.momo-button--filled.momo-button--danger) {}
+  
+  &--loading:extend(.momo-button--loading) {}
+  &--disabled:extend(.momo-button:disabled) {}
+  &--block:extend(.momo-button--block) {}
 }

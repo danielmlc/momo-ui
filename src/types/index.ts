@@ -2,7 +2,9 @@
 
 // 基础类型
 export type Size = 'small' | 'medium' | 'large';
-export type ButtonType = 'primary' | 'secondary' | 'success' | 'warning' | 'error';
+export type ButtonType = 'primary' | 'info' | 'success' | 'warning' | 'danger';
+export type ButtonVariant = 'default' | 'filled' | 'text' | 'icon' | 'floating';
+export type IconPosition = 'left' | 'right' | 'only';
 export type ShadowLevel = 'none' | 'small' | 'normal' | 'large';
 export type InputType = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
 
@@ -14,56 +16,22 @@ export type ChangeCallback<T = any> = (value: T) => void;
 export interface ButtonOptions {
   text?: string;
   type?: ButtonType;
+  variant?: ButtonVariant;
   size?: Size;
   disabled?: boolean;
   loading?: boolean;
-  round?: boolean;
   block?: boolean;
-  ghost?: boolean;
-  onClick?: EventCallback<MouseEvent>;
+  icon?: string | HTMLElement;
+  iconPosition?: IconPosition;
+  htmlType?: 'button' | 'submit' | 'reset';
+  autoFocus?: boolean;
+  className?: string;
+  style?: Partial<CSSStyleDeclaration>;
+  onClick?: EventCallback<MouseEvent> | null;
+  onFocus?: EventCallback<FocusEvent> | null;
+  onBlur?: EventCallback<FocusEvent> | null;
 }
 
-// 卡片组件接口
-export interface CardOptions {
-  title?: string;
-  content?: string | HTMLElement;
-  footer?: string | HTMLElement;
-  hoverable?: boolean;
-  shadow?: ShadowLevel;
-  bordered?: boolean;
-  simple?: boolean;
-  image?: boolean;
-}
-
-// 输入框组件接口
-export interface InputOptions {
-  type?: InputType;
-  placeholder?: string;
-  value?: string;
-  disabled?: boolean;
-  size?: Size;
-  maxLength?: number;
-  readonly?: boolean;
-  autofocus?: boolean;
-  icon?: string;
-  suffix?: string;
-  onInput?: ChangeCallback<string>;
-  onChange?: ChangeCallback<string>;
-  onFocus?: EventCallback<FocusEvent>;
-  onBlur?: EventCallback<FocusEvent>;
-}
-
-// 开关组件接口
-export interface SwitchOptions {
-  checked?: boolean;
-  disabled?: boolean;
-  size?: Size;
-  checkedText?: string;
-  uncheckedText?: string;
-  checkedColor?: string;
-  uncheckedColor?: string;
-  onChange?: ChangeCallback<boolean>;
-}
 
 // 主题类型
 export type ThemeType = 'light' | 'dark' | 'colorful';
@@ -117,42 +85,23 @@ export interface ButtonComponent extends ComponentBase {
   setText(text: string): void;
   setDisabled(disabled: boolean): void;
   setLoading(loading: boolean): void;
-}
-
-// 卡片组件类接口
-export interface CardComponent extends ComponentBase {
-  setTitle(title: string): void;
-  setContent(content: string | HTMLElement): void;
-}
-
-// 输入框组件类接口
-export interface InputComponent extends ComponentBase {
-  getValue(): string;
-  setValue(value: string): void;
-  setDisabled(disabled: boolean): void;
+  setType(type: ButtonType): void;
+  setVariant(variant: ButtonVariant): void;
+  setSize(size: Size): void;
+  setIcon(icon: string | HTMLElement, position?: IconPosition): void;
+  removeIcon(): void;
   focus(): void;
   blur(): void;
+  click(): void;
 }
 
-// 开关组件类接口
-export interface SwitchComponent extends ComponentBase {
-  setChecked(checked: boolean): void;
-  setDisabled(disabled: boolean): void;
-  isChecked(): boolean;
-}
 
 // 组件构造函数类型
 export type ButtonConstructor = new (options?: ButtonOptions) => ButtonComponent;
-export type CardConstructor = new (options?: CardOptions) => CardComponent;
-export type InputConstructor = new (options?: InputOptions) => InputComponent;
-export type SwitchConstructor = new (options?: SwitchOptions) => SwitchComponent;
 
 // 组件库导出接口
 export interface MomoUI {
   Button: ButtonConstructor;
-  Card: CardConstructor;
-  Input: InputConstructor;
-  Switch: SwitchConstructor;
   version: string;
 }
 

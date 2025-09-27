@@ -1,254 +1,311 @@
 // 导入组件库
-import { Button, Card, Input, Switch } from '../src/index';
-import type { ButtonComponent, CardComponent, InputComponent, SwitchComponent } from '../src/types';
+import { Button } from '../src/index';
+import type { ButtonComponent } from '../src/types';
 
 // 等待页面加载完成
 document.addEventListener('DOMContentLoaded', function(): void {
     // 初始化所有演示组件
     initButtonDemo();
-    initInputDemo();
-    initSwitchDemo();
-    initCardDemo();
     initThemeSwitcher();
 });
 
 // 按钮演示
 function initButtonDemo(): void {
-    // 基础按钮
+    // 按钮状态演示 (Default, Hover, Pressed, Disabled)
     const basicButtonsContainer = document.getElementById('basicButtons');
     if (!basicButtonsContainer) return;
     
-    const primaryBtn: ButtonComponent = new Button({
-        text: '主要按钮',
-        type: 'primary',
-        onClick: () => showMessage('主要按钮被点击了！')
+    const defaultBtn: ButtonComponent = new Button({
+        text: 'Default',
+        variant: 'default',
+        onClick: () => showMessage('默认按钮被点击了！')
     });
     
-    const secondaryBtn: ButtonComponent = new Button({
-        text: '次要按钮',
-        type: 'secondary',
-        onClick: () => showMessage('次要按钮被点击了！')
+    const hoverBtn: ButtonComponent = new Button({
+        text: 'Hover',
+        variant: 'default',
+        onClick: () => showMessage('悬浮按钮被点击了！')
     });
     
-    basicButtonsContainer.appendChild(primaryBtn.element);
-    basicButtonsContainer.appendChild(secondaryBtn.element);
+    const pressedBtn: ButtonComponent = new Button({
+        text: 'Pressed',
+        variant: 'default',
+        onClick: () => showMessage('按下按钮被点击了！')
+    });
     
-    // 不同尺寸的按钮
+    const disabledBtn: ButtonComponent = new Button({
+        text: 'Disabled',
+        variant: 'default',
+        disabled: true
+    });
+    
+    basicButtonsContainer.appendChild(defaultBtn.element);
+    basicButtonsContainer.appendChild(hoverBtn.element);
+    basicButtonsContainer.appendChild(pressedBtn.element);
+    basicButtonsContainer.appendChild(disabledBtn.element);
+    
+    // 按钮尺寸演示 (Small, Medium, Large)
     const sizeButtonsContainer = document.getElementById('sizeButtons');
     if (!sizeButtonsContainer) return;
     
     const smallBtn: ButtonComponent = new Button({
-        text: '小按钮',
-        size: 'small'
+        text: 'Small',
+        size: 'small',
+        variant: 'default'
     });
     
     const mediumBtn: ButtonComponent = new Button({
-        text: '中等按钮',
-        size: 'medium'
+        text: 'Medium',
+        size: 'medium',
+        variant: 'default'
     });
     
     const largeBtn: ButtonComponent = new Button({
-        text: '大按钮',
-        size: 'large'
+        text: 'Large',
+        size: 'large',
+        variant: 'default'
     });
     
     sizeButtonsContainer.appendChild(smallBtn.element);
     sizeButtonsContainer.appendChild(mediumBtn.element);
     sizeButtonsContainer.appendChild(largeBtn.element);
     
-    // 不同类型的按钮
+    // 填充按钮演示 (Primary, Info, Danger, Warn, Success)
     const typeButtonsContainer = document.getElementById('typeButtons');
     if (!typeButtonsContainer) return;
     
-    const successBtn: ButtonComponent = new Button({
-        text: '成功',
-        type: 'success'
+    const primaryBtn: ButtonComponent = new Button({
+        text: 'Primary',
+        type: 'primary',
+        variant: 'filled',
+        onClick: () => showMessage('主要按钮被点击了！')
+    });
+    
+    const infoBtn: ButtonComponent = new Button({
+        text: 'Info',
+        type: 'info',
+        variant: 'filled',
+        onClick: () => showMessage('信息按钮被点击了！')
+    });
+    
+    const dangerBtn: ButtonComponent = new Button({
+        text: 'Danger',
+        type: 'danger',
+        variant: 'filled',
+        onClick: () => showMessage('危险按钮被点击了！')
     });
     
     const warningBtn: ButtonComponent = new Button({
-        text: '警告',
-        type: 'warning'
+        text: 'Warn',
+        type: 'warning',
+        variant: 'filled',
+        onClick: () => showMessage('警告按钮被点击了！')
     });
     
-    const errorBtn: ButtonComponent = new Button({
-        text: '错误',
-        type: 'error'
+    const successBtn: ButtonComponent = new Button({
+        text: 'Success',
+        type: 'success',
+        variant: 'filled',
+        onClick: () => showMessage('成功按钮被点击了！')
     });
     
-    typeButtonsContainer.appendChild(successBtn.element);
+    typeButtonsContainer.appendChild(primaryBtn.element);
+    typeButtonsContainer.appendChild(infoBtn.element);
+    typeButtonsContainer.appendChild(dangerBtn.element);
     typeButtonsContainer.appendChild(warningBtn.element);
-    typeButtonsContainer.appendChild(errorBtn.element);
+    typeButtonsContainer.appendChild(successBtn.element);
     
     // 特殊状态按钮
     const stateButtonsContainer = document.getElementById('stateButtons');
     if (!stateButtonsContainer) return;
     
-    const disabledBtn: ButtonComponent = new Button({
-        text: '禁用按钮',
-        disabled: true
-    });
-    
     const loadingBtn: ButtonComponent = new Button({
         text: '加载中',
+        variant: 'filled',
+        type: 'primary',
         loading: true
     });
     
-    stateButtonsContainer.appendChild(disabledBtn.element);
+    const blockBtn: ButtonComponent = new Button({
+        text: '块级按钮',
+        variant: 'filled',
+        type: 'primary',
+        block: true
+    });
+    
     stateButtonsContainer.appendChild(loadingBtn.element);
+    stateButtonsContainer.appendChild(blockBtn.element);
+    
+    // 创建新的容器来演示其他按钮类型
+    createTextButtonsDemo();
+    createIconButtonsDemo();
+    createFloatingButtonDemo();
 }
 
-// 输入框演示
-function initInputDemo(): void {
-    // 基础输入框
-    const basicInputsContainer = document.getElementById('basicInputs');
-    if (!basicInputsContainer) return;
+// 文本按钮演示
+function createTextButtonsDemo(): void {
+    const container = document.createElement('div');
+    container.className = 'demo-item';
+    container.innerHTML = '<h4>文本按钮</h4>';
     
-    const textInput: InputComponent = new Input({
-        type: 'text',
-        placeholder: '请输入文本'
+    const textButtonsContainer = document.createElement('div');
+    textButtonsContainer.style.display = 'flex';
+    textButtonsContainer.style.gap = '10px';
+    textButtonsContainer.style.flexWrap = 'wrap';
+    
+    const primaryTextBtn: ButtonComponent = new Button({
+        text: 'Primary',
+        type: 'primary',
+        variant: 'text'
     });
     
-    const passwordInput: InputComponent = new Input({
-        type: 'password',
-        placeholder: '请输入密码'
+    const infoTextBtn: ButtonComponent = new Button({
+        text: 'Info',
+        type: 'info',
+        variant: 'text'
     });
     
-    basicInputsContainer.appendChild(textInput.element);
-    basicInputsContainer.appendChild(passwordInput.element);
-    
-    // 不同尺寸的输入框
-    const sizeInputsContainer = document.getElementById('sizeInputs');
-    if (!sizeInputsContainer) return;
-    
-    const smallInput: InputComponent = new Input({
-        size: 'small',
-        placeholder: '小输入框'
+    const dangerTextBtn: ButtonComponent = new Button({
+        text: 'Danger',
+        type: 'danger',
+        variant: 'text'
     });
     
-    const mediumInput: InputComponent = new Input({
+    const warningTextBtn: ButtonComponent = new Button({
+        text: 'Warn',
+        type: 'warning',
+        variant: 'text'
+    });
+    
+    const successTextBtn: ButtonComponent = new Button({
+        text: 'Success',
+        type: 'success',
+        variant: 'text'
+    });
+    
+    textButtonsContainer.appendChild(primaryTextBtn.element);
+    textButtonsContainer.appendChild(infoTextBtn.element);
+    textButtonsContainer.appendChild(dangerTextBtn.element);
+    textButtonsContainer.appendChild(warningTextBtn.element);
+    textButtonsContainer.appendChild(successTextBtn.element);
+    
+    container.appendChild(textButtonsContainer);
+    
+    // 找到类型按钮容器的父级并添加
+    const typeSection = document.getElementById('typeButtons')?.parentElement;
+    if (typeSection) {
+        typeSection.appendChild(container);
+    }
+}
+
+// 图标按钮演示
+function createIconButtonsDemo(): void {
+    const container = document.createElement('div');
+    container.className = 'demo-item';
+    container.innerHTML = '<h4>图标按钮</h4>';
+    
+    const iconButtonsContainer = document.createElement('div');
+    iconButtonsContainer.style.display = 'flex';
+    iconButtonsContainer.style.gap = '10px';
+    iconButtonsContainer.style.flexWrap = 'wrap';
+    iconButtonsContainer.style.alignItems = 'center';
+    
+    // 带图标的按钮
+    const submitBtn: ButtonComponent = new Button({
+        text: 'Submit',
+        type: 'primary',
+        variant: 'filled',
+        icon: '→',
+        iconPosition: 'right'
+    });
+    
+    // 圆形图标按钮
+    const iconBtn: ButtonComponent = new Button({
+        text: '→',
+        type: 'primary',
+        variant: 'icon',
         size: 'medium',
-        placeholder: '中等输入框'
+        icon: '→',
+        iconPosition: 'only'
     });
     
-    const largeInput: InputComponent = new Input({
-        size: 'large',
-        placeholder: '大输入框'
-    });
+    iconButtonsContainer.appendChild(submitBtn.element);
+    iconButtonsContainer.appendChild(iconBtn.element);
     
-    sizeInputsContainer.appendChild(smallInput.element);
-    sizeInputsContainer.appendChild(mediumInput.element);
-    sizeInputsContainer.appendChild(largeInput.element);
+    container.appendChild(iconButtonsContainer);
+    
+    // 添加到演示区域
+    const typeSection = document.getElementById('typeButtons')?.parentElement;
+    if (typeSection) {
+        typeSection.appendChild(container);
+    }
 }
 
-// 开关演示
-function initSwitchDemo(): void {
-    // 基础开关
-    const basicSwitchesContainer = document.getElementById('basicSwitches');
-    if (!basicSwitchesContainer) return;
+// 浮动操作按钮演示
+function createFloatingButtonDemo(): void {
+    const container = document.createElement('div');
+    container.className = 'demo-item';
+    container.innerHTML = '<h4>浮动操作按钮</h4>';
     
-    const basicSwitch: SwitchComponent = new Switch({
-        checked: false,
-        onChange: (checked: boolean) => showMessage(`开关状态: ${checked ? '开启' : '关闭'}`)
+    const floatingContainer = document.createElement('div');
+    floatingContainer.style.position = 'relative';
+    floatingContainer.style.height = '100px';
+    floatingContainer.style.background = '#f0f0f0';
+    floatingContainer.style.borderRadius = '8px';
+    
+    const floatingBtn: ButtonComponent = new Button({
+        text: '+',
+        type: 'primary',
+        variant: 'floating',
+        icon: '+',
+        iconPosition: 'only'
     });
     
-    const checkedSwitch: SwitchComponent = new Switch({
-        checked: true,
-        onChange: (checked: boolean) => showMessage(`开关状态: ${checked ? '开启' : '关闭'}`)
-    });
+    // 修改浮动按钮的定位为相对定位用于演示
+    floatingBtn.element.style.position = 'absolute';
+    floatingBtn.element.style.bottom = '20px';
+    floatingBtn.element.style.right = '20px';
     
-    basicSwitchesContainer.appendChild(basicSwitch.element);
-    basicSwitchesContainer.appendChild(checkedSwitch.element);
+    floatingContainer.appendChild(floatingBtn.element);
+    container.appendChild(floatingContainer);
     
-    // 不同尺寸的开关
-    const sizeSwitchesContainer = document.getElementById('sizeSwitches');
-    if (!sizeSwitchesContainer) return;
-    
-    const smallSwitch: SwitchComponent = new Switch({
-        size: 'small',
-        checkedText: '开',
-        uncheckedText: '关'
-    });
-    
-    const mediumSwitch: SwitchComponent = new Switch({
-        size: 'medium',
-        checkedText: '开启',
-        uncheckedText: '关闭'
-    });
-    
-    const largeSwitch: SwitchComponent = new Switch({
-        size: 'large',
-        checkedText: '开启',
-        uncheckedText: '关闭'
-    });
-    
-    sizeSwitchesContainer.appendChild(smallSwitch.element);
-    sizeSwitchesContainer.appendChild(mediumSwitch.element);
-    sizeSwitchesContainer.appendChild(largeSwitch.element);
+    // 添加到演示区域
+    const typeSection = document.getElementById('typeButtons')?.parentElement;
+    if (typeSection) {
+        typeSection.appendChild(container);
+    }
 }
 
-// 卡片演示
-function initCardDemo(): void {
-    // 基础卡片
-    const basicCardsContainer = document.getElementById('basicCards');
-    if (!basicCardsContainer) return;
-    
-    const basicCard: CardComponent = new Card({
-        title: '基础卡片',
-        content: '<p>这是一个基础的新拟物化卡片组件，具有柔和的阴影效果。</p>',
-        footer: '卡片底部信息'
-    });
-    
-    basicCardsContainer.appendChild(basicCard.element);
-    
-    // 不同阴影的卡片
-    const shadowCardsContainer = document.getElementById('shadowCards');
-    if (!shadowCardsContainer) return;
-    
-    const smallShadowCard: CardComponent = new Card({
-        title: '轻微阴影',
-        content: '<p>这是一个轻微阴影的卡片。</p>',
-        shadow: 'small'
-    });
-    
-    const normalShadowCard: CardComponent = new Card({
-        title: '正常阴影',
-        content: '<p>这是一个正常阴影的卡片。</p>',
-        shadow: 'normal'
-    });
-    
-    const largeShadowCard: CardComponent = new Card({
-        title: '强烈阴影',
-        content: '<p>这是一个强烈阴影的卡片。</p>',
-        shadow: 'large'
-    });
-    
-    shadowCardsContainer.appendChild(smallShadowCard.element);
-    shadowCardsContainer.appendChild(normalShadowCard.element);
-    shadowCardsContainer.appendChild(largeShadowCard.element);
-}
 
 // 主题切换器
 function initThemeSwitcher(): void {
     const themeSwitcherContainer = document.getElementById('themeSwitcher');
     if (!themeSwitcherContainer) return;
     
-    const themeSwitch: SwitchComponent = new Switch({
-        size: 'large',
-        checkedText: '深色',
-        uncheckedText: '浅色',
-        onChange: (checked: boolean) => {
-            if (checked) {
-                document.body.classList.add('theme-dark');
-                document.body.classList.remove('theme-light');
-            } else {
-                document.body.classList.add('theme-light');
-                document.body.classList.remove('theme-dark');
-            }
-            showMessage(`已切换到${checked ? '深色' : '浅色'}主题`);
+    const lightThemeBtn: ButtonComponent = new Button({
+        text: '浅色主题',
+        type: 'primary',
+        variant: 'default',
+        onClick: () => {
+            document.body.classList.add('theme-light');
+            document.body.classList.remove('theme-dark');
+            showMessage('已切换到浅色主题');
         }
     });
     
-    themeSwitcherContainer.appendChild(themeSwitch.element);
+    const darkThemeBtn: ButtonComponent = new Button({
+        text: '深色主题',
+        type: 'info',
+        variant: 'default',
+        onClick: () => {
+            document.body.classList.add('theme-dark');
+            document.body.classList.remove('theme-light');
+            showMessage('已切换到深色主题');
+        }
+    });
+    
+    themeSwitcherContainer.appendChild(lightThemeBtn.element);
+    themeSwitcherContainer.appendChild(darkThemeBtn.element);
 }
 
 // 显示消息提示

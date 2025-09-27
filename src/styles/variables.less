@@ -1,91 +1,202 @@
-// 新拟物化设计变量定义
+// Momo UI 设计变量系统 - 基于新拟物化设计原则
 
-// 颜色系统
-@primary-color: #667eea;
-@secondary-color: #764ba2;
-@success-color: #52c41a;
-@warning-color: #faad14;
-@error-color: #f5222d;
-@info-color: #1890ff;
+// ================================
+// 基础颜色系统
+// ================================
+
+// 主色调 - 基于设计图的精确颜色值
+@color-primary: #5b79f0;      // 主要蓝色
+@color-info: #26d0ce;         // 信息青色  
+@color-success: #7bc96f;      // 成功绿色
+@color-warning: #fbb03b;      // 警告橙色
+@color-danger: #ff5364;       // 危险红色
+
+// 中性色系
+@color-gray-50: #f8f9fa;      // 最浅灰
+@color-gray-100: #f1f3f4;     // 浅灰
+@color-gray-200: #e8eaed;     // 浅灰2
+@color-gray-300: #dadce0;     // 中浅灰
+@color-gray-400: #9aa0a6;     // 中灰
+@color-gray-500: #5f6368;     // 深中灰
+@color-gray-600: #3c4043;     // 深灰
+@color-gray-700: #202124;     // 最深灰
+@color-gray-800: #171717;     // 极深灰
+@color-gray-900: #0d1117;     // 黑色
+
+// 语义化颜色别名
+@color-text-primary: @color-gray-700;
+@color-text-secondary: @color-gray-500;
+@color-text-disabled: @color-gray-400;
+@color-text-inverse: #ffffff;
 
 // 背景色系统
-@bg-light: #f0f2f5;
-@bg-dark: #2c3e50;
-@bg-primary: @bg-light;
+@color-bg-primary: #f6f7f9;    // 主背景色 - 新拟物化经典色
+@color-bg-secondary: #ffffff;   // 次要背景色
+@color-bg-tertiary: @color-gray-50;
+@color-bg-elevated: #ffffff;    // 悬浮元素背景
 
-// 阴影系统 - 新拟物化核心
-@shadow-light: rgba(255, 255, 255, 0.8);
-@shadow-dark: rgba(0, 0, 0, 0.15);
+// ================================
+// 新拟物化阴影系统
+// ================================
 
-// 凸起效果阴影
-@shadow-raised: 
-  8px 8px 16px @shadow-dark,
-  -8px -8px 16px @shadow-light;
+// 阴影颜色定义
+@shadow-color-light: rgba(255, 255, 255, 0.9);  // 高光阴影
+@shadow-color-dark: rgba(156, 163, 175, 0.4);   // 深色阴影
 
-// 凹陷效果阴影
-@shadow-inset: 
-  inset 8px 8px 16px @shadow-dark,
-  inset -8px -8px 16px @shadow-light;
+// 按钮阴影系统
+@shadow-button-default: 
+  6px 6px 12px @shadow-color-dark,
+  -6px -6px 12px @shadow-color-light;
 
-// 轻微凸起效果
-@shadow-raised-sm: 
-  4px 4px 8px @shadow-dark,
-  -4px -4px 8px @shadow-light;
+@shadow-button-hover: 
+  8px 8px 16px @shadow-color-dark,
+  -8px -8px 16px @shadow-color-light;
 
-// 轻微凹陷效果
-@shadow-inset-sm: 
-  inset 4px 4px 8px @shadow-dark,
-  inset -4px -4px 8px @shadow-light;
+@shadow-button-pressed: 
+  inset 3px 3px 6px @shadow-color-dark,
+  inset -3px -3px 6px @shadow-color-light;
 
-// 悬浮效果阴影
-@shadow-hover: 
-  12px 12px 24px @shadow-dark,
-  -12px -12px 24px @shadow-light;
+@shadow-button-disabled: 
+  3px 3px 6px rgba(156, 163, 175, 0.2),
+  -3px -3px 6px rgba(255, 255, 255, 0.6);
 
-// 文字颜色
-@text-primary: #2c3e50;
-@text-secondary: #7f8c8d;
-@text-disabled: #bdc3c7;
-@text-white: #ffffff;
+// 浮动元素阴影
+@shadow-floating: 
+  0 10px 25px rgba(0, 0, 0, 0.1),
+  0 4px 12px rgba(0, 0, 0, 0.05);
 
-// 尺寸系统
-@border-radius-sm: 8px;
-@border-radius-md: 12px;
-@border-radius-lg: 16px;
-@border-radius-xl: 24px;
+// ================================
+// 尺寸系统 (8px 网格)
+// ================================
+
+// 基础尺寸单位
+@size-unit: 8px;
 
 // 间距系统
-@spacing-xs: 4px;
-@spacing-sm: 8px;
-@spacing-md: 16px;
-@spacing-lg: 24px;
-@spacing-xl: 32px;
-@spacing-xxl: 48px;
+@spacing-xs: @size-unit * 0.5;     // 4px
+@spacing-sm: @size-unit * 1;       // 8px  
+@spacing-md: @size-unit * 2;       // 16px
+@spacing-lg: @size-unit * 3;       // 24px
+@spacing-xl: @size-unit * 4;       // 32px
+@spacing-2xl: @size-unit * 6;      // 48px
+@spacing-3xl: @size-unit * 8;      // 64px
 
+// 圆角系统
+@radius-xs: 4px;
+@radius-sm: 6px;
+@radius-md: 8px;
+@radius-lg: 12px;
+@radius-xl: 16px;
+@radius-2xl: 24px;
+@radius-full: 9999px;
+
+// ================================
+// 按钮专用尺寸系统
+// ================================
+
+// 按钮高度
+@button-height-sm: @size-unit * 4;      // 32px
+@button-height-md: @size-unit * 5;      // 40px  
+@button-height-lg: @size-unit * 6;      // 48px
+
+// 按钮内边距
+@button-padding-sm: @spacing-xs @spacing-md;    // 4px 16px
+@button-padding-md: @spacing-sm @spacing-lg;    // 8px 24px
+@button-padding-lg: @spacing-md @spacing-xl;    // 16px 32px
+
+// 按钮圆角
+@button-radius-sm: @radius-sm;     // 6px
+@button-radius-md: @radius-md;     // 8px
+@button-radius-lg: @radius-lg;     // 12px
+
+// 按钮最小宽度
+@button-min-width-sm: @size-unit * 8;   // 64px
+@button-min-width-md: @size-unit * 10;  // 80px
+@button-min-width-lg: @size-unit * 12;  // 96px
+
+// ================================
 // 字体系统
-@font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-@font-size-sm: 12px;
-@font-size-md: 14px;
-@font-size-lg: 16px;
-@font-size-xl: 18px;
-@font-size-xxl: 20px;
+// ================================
 
+// 字体家族
+@font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+@font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+// 字体大小
+@font-size-xs: 12px;
+@font-size-sm: 14px;
+@font-size-md: 16px;
+@font-size-lg: 18px;
+@font-size-xl: 20px;
+@font-size-2xl: 24px;
+
+// 字体权重
+@font-weight-light: 300;
 @font-weight-normal: 400;
 @font-weight-medium: 500;
 @font-weight-semibold: 600;
 @font-weight-bold: 700;
 
-// 过渡动画
-@transition-fast: 0.15s ease-in-out;
-@transition-normal: 0.3s ease-in-out;
-@transition-slow: 0.5s ease-in-out;
+// 行高
+@line-height-tight: 1.25;
+@line-height-normal: 1.5;
+@line-height-relaxed: 1.75;
 
-// 组件尺寸
-@height-sm: 32px;
-@height-md: 40px;
-@height-lg: 48px;
+// 按钮字体配置
+@button-font-size-sm: @font-size-sm;
+@button-font-size-md: @font-size-md;
+@button-font-size-lg: @font-size-lg;
 
-// Z-index 层级
+@button-font-weight: @font-weight-medium;
+@button-line-height: @line-height-tight;
+
+// ================================
+// 动画系统
+// ================================
+
+// 缓动函数
+@ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+@ease-out: cubic-bezier(0, 0, 0.2, 1);
+@ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+// 持续时间
+@duration-fast: 150ms;
+@duration-normal: 250ms;
+@duration-slow: 350ms;
+
+// 完整过渡
+@transition-fast: all @duration-fast @ease-in-out;
+@transition-normal: all @duration-normal @ease-in-out;
+@transition-slow: all @duration-slow @ease-in-out;
+
+// 按钮专用过渡
+@transition-button: 
+  box-shadow @duration-fast @ease-in-out,
+  transform @duration-fast @ease-in-out,
+  background-color @duration-fast @ease-in-out,
+  color @duration-fast @ease-in-out;
+
+// ================================
+// Z-index 层级系统
+// ================================
+
+@z-index-base: 0;
+@z-index-elevated: 10;
 @z-index-dropdown: 1000;
+@z-index-sticky: 1020;
+@z-index-fixed: 1030;
+@z-index-modal-backdrop: 1040;
 @z-index-modal: 1050;
+@z-index-popover: 1060;
 @z-index-tooltip: 1070;
+@z-index-toast: 1080;
+
+// ================================
+// 断点系统 (响应式)
+// ================================
+
+@breakpoint-sm: 576px;
+@breakpoint-md: 768px;
+@breakpoint-lg: 992px;
+@breakpoint-xl: 1200px;
+@breakpoint-2xl: 1400px;

@@ -1,0 +1,204 @@
+// 开关组件样式
+
+.neu-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  
+  // 隐藏原生input
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  // 开关轨道
+  &__track {
+    .neumorphism-inset(@border-radius-xl);
+    
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    background: @bg-primary;
+    transition: all @transition-normal;
+    
+    // 开关拇指
+    .neu-switch__thumb {
+      .neumorphism-raised(50%);
+      
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: @bg-primary;
+      transition: all @transition-normal;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 12px;
+        height: 12px;
+        background: radial-gradient(circle, @text-secondary, transparent);
+        border-radius: 50%;
+        opacity: 0.3;
+      }
+    }
+  }
+  
+  // 文本标签
+  &__label {
+    margin-left: @spacing-sm;
+    font-size: @font-size-md;
+    color: @text-primary;
+    .text-shadow-light();
+  }
+  
+  // 尺寸变体
+  &--small {
+    .neu-switch__track {
+      width: 32px;
+      height: 18px;
+      
+      .neu-switch__thumb {
+        width: 14px;
+        height: 14px;
+        
+        &::before {
+          width: 8px;
+          height: 8px;
+        }
+      }
+    }
+    
+    .neu-switch__label {
+      font-size: @font-size-sm;
+    }
+  }
+  
+  &--medium {
+    .neu-switch__track {
+      width: 44px;
+      height: 24px;
+      
+      .neu-switch__thumb {
+        width: 20px;
+        height: 20px;
+        
+        &::before {
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+    
+    .neu-switch__label {
+      font-size: @font-size-md;
+    }
+  }
+  
+  &--large {
+    .neu-switch__track {
+      width: 56px;
+      height: 30px;
+      
+      .neu-switch__thumb {
+        width: 26px;
+        height: 26px;
+        
+        &::before {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    
+    .neu-switch__label {
+      font-size: @font-size-lg;
+    }
+  }
+  
+  // 选中状态
+  &--checked {
+    .neu-switch__track {
+      box-shadow: @shadow-inset;
+      
+      .neu-switch__thumb {
+        left: calc(100% - 22px);
+        background: linear-gradient(135deg, @primary-color, lighten(@primary-color, 10%));
+        box-shadow: @shadow-raised;
+        
+        &::before {
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+          opacity: 0.6;
+        }
+      }
+    }
+    
+    &.neu-switch--small .neu-switch__thumb {
+      left: calc(100% - 16px);
+    }
+    
+    &.neu-switch--large .neu-switch__thumb {
+      left: calc(100% - 28px);
+    }
+  }
+  
+  // 禁用状态
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    .neu-switch__track {
+      box-shadow: none;
+      
+      .neu-switch__thumb {
+        box-shadow: @shadow-inset-sm;
+      }
+    }
+  }
+  
+  // 悬停效果
+  &:not(.neu-switch--disabled):hover {
+    .neu-switch__track .neu-switch__thumb {
+      transform: scale(1.05);
+    }
+  }
+  
+  // 焦点效果
+  &__input:focus + .neu-switch__track {
+    box-shadow: 
+      @shadow-inset,
+      0 0 0 2px fade(@primary-color, 20%);
+  }
+}
+
+// 开关组
+.neu-switch-group {
+  display: flex;
+  flex-direction: column;
+  gap: @spacing-sm;
+  
+  .neu-switch {
+    &:not(:last-child) {
+      margin-bottom: @spacing-xs;
+    }
+  }
+  
+  // 水平布局
+  &--horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: @spacing-lg;
+    
+    .neu-switch {
+      margin-bottom: 0;
+    }
+  }
+}

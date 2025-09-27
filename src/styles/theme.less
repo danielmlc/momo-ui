@@ -1,0 +1,80 @@
+// 主题系统
+
+// 浅色主题（默认）
+.theme-light {
+  --bg-primary: #f0f2f5;
+  --bg-secondary: #ffffff;
+  --shadow-light: rgba(255, 255, 255, 0.8);
+  --shadow-dark: rgba(0, 0, 0, 0.15);
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --text-disabled: #bdc3c7;
+}
+
+// 深色主题
+.theme-dark {
+  --bg-primary: #2c3e50;
+  --bg-secondary: #34495e;
+  --shadow-light: rgba(255, 255, 255, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --text-primary: #ecf0f1;
+  --text-secondary: #bdc3c7;
+  --text-disabled: #7f8c8d;
+}
+
+// 彩色主题
+.theme-colorful {
+  --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-secondary: #ffffff;
+  --shadow-light: rgba(255, 255, 255, 0.9);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --text-disabled: #bdc3c7;
+}
+
+// 主题切换动画
+.theme-transition {
+  * {
+    transition: background-color @transition-normal, 
+                color @transition-normal, 
+                box-shadow @transition-normal;
+  }
+}
+
+// 根据主题调整变量
+:root {
+  // 默认使用浅色主题
+  .theme-light();
+}
+
+// 当body有深色主题类时
+body.theme-dark {
+  .theme-dark();
+}
+
+// 当body有彩色主题类时
+body.theme-colorful {
+  .theme-colorful();
+}
+
+// CSS变量版本的新拟物化阴影
+@shadow-raised-var: 
+  8px 8px 16px var(--shadow-dark),
+  -8px -8px 16px var(--shadow-light);
+
+@shadow-inset-var: 
+  inset 8px 8px 16px var(--shadow-dark),
+  inset -8px -8px 16px var(--shadow-light);
+
+@shadow-raised-sm-var: 
+  4px 4px 8px var(--shadow-dark),
+  -4px -4px 8px var(--shadow-light);
+
+@shadow-inset-sm-var: 
+  inset 4px 4px 8px var(--shadow-dark),
+  inset -4px -4px 8px var(--shadow-light);
+
+@shadow-hover-var: 
+  12px 12px 24px var(--shadow-dark),
+  -12px -12px 24px var(--shadow-light);

@@ -5,7 +5,8 @@
       "Bash(npm run demo:*)",
       "Bash(netstat:*)",
       "Bash(taskkill:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(tasklist)"
     ],
     "deny": [],
     "ask": []

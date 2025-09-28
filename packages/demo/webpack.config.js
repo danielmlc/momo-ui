@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './demo/demo.ts',
+  entry: './demo.ts',
   output: {
     path: path.resolve(__dirname, 'demo-dist'),
     filename: 'demo.js'
@@ -10,11 +10,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@/components': path.resolve(__dirname, 'src/components'),
-      '@/styles': path.resolve(__dirname, 'src/styles'),
-      '@/utils': path.resolve(__dirname, 'src/utils'),
-      '@/types': path.resolve(__dirname, 'src/types')
+      '@momo-ui/core': path.resolve(__dirname, '../momo-ui/src')
     }
   },
   module: {

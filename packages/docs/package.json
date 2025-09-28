@@ -1,0 +1,39 @@
+{
+  "name": "@momo-ui/docs",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Momo UI 组件库文档",
+  "main": "index.html",
+  "scripts": {
+    "serve": "node serve.js",
+    "start": "node serve.js 3000",
+    "dev": "node serve.js 3000",
+    "preview": "node serve.js 8080",
+    "build": "echo 'Docsify 是运行时渲染，无需构建步骤'",
+    "deploy": "echo '请查看部署指南: https://docsify.js.org/#/deploy'",
+    "type-check": "echo 'docs package does not require type checking'"
+  },
+  "keywords": [
+    "documentation",
+    "docsify",
+    "momo-ui",
+    "neumorphism",
+    "components"
+  ],
+  "author": "Momo UI Team",
+  "license": "MIT",
+  "dependencies": {
+    "@momo-ui/core": "workspace:*"
+  },
+  "devDependencies": {
+    "docsify-cli": "^4.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/momo-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/momo-ui/issues"
+  },
+  "homepage": "https://your-username.github.io/momo-ui"
+}

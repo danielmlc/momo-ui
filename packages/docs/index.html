@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Momo UI - 现代化新拟物化风格组件库</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Momo UI 是一个现代化的新拟物化风格组件库">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <!-- Docsify 基础样式 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <!-- 新拟物化主题样式 -->
+  <style>
+    :root {
+      /* 新拟物化颜色 */
+      --base-background-color: #f0f0f3;
+      --base-color: #333;
+      --theme-color: #6366f1;
+      --accent-color: #8b5cf6;
+
+      /* 阴影颜色 */
+      --shadow-light: #ffffff;
+      --shadow-dark: #d1d1d4;
+
+      /* 文本颜色 */
+      --text-color-base: #333;
+      --text-color-secondary: #666;
+      --text-color-tertiary: #999;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif !important;
+      background: var(--base-background-color) !important;
+      color: var(--text-color-base) !important;
+      min-height: 100vh !important;
+    }
+
+    /* 覆盖 docsify 默认样式 */
+    .app-name-link {
+      color: var(--theme-color) !important;
+    }
+
+    .markdown-section {
+      max-width: none !important;
+      padding: 30px 30px 40px 30px !important;
+    }
+
+    /* 新拟物化侧边栏 */
+    .sidebar {
+      background: var(--base-background-color) !important;
+      border-right: none !important;
+      box-shadow: 6px 0 20px rgba(0, 0, 0, 0.1),
+                  inset 2px 0 4px var(--shadow-light) !important;
+    }
+
+    .sidebar ul li a {
+      color: var(--text-color-base) !important;
+      border-bottom: none !important;
+      margin: 4px 12px !important;
+      padding: 10px 16px !important;
+      border-radius: 12px !important;
+      transition: all 0.3s ease !important;
+      background: transparent !important;
+      display: block !important;
+    }
+
+    .sidebar ul li a:hover {
+      color: var(--theme-color) !important;
+      text-decoration: none !important;
+      background: var(--base-background-color) !important;
+      box-shadow: 3px 3px 8px var(--shadow-dark),
+                  -3px -3px 8px var(--shadow-light) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    .sidebar ul li.active > a {
+      color: var(--theme-color) !important;
+      font-weight: 500 !important;
+      background: var(--base-background-color) !important;
+      box-shadow: inset 3px 3px 8px var(--shadow-dark),
+                  inset -3px -3px 8px var(--shadow-light) !important;
+    }
+
+    .sidebar > h1 {
+      margin: 0;
+      padding: 24px 20px;
+      text-align: center;
+      background: var(--base-background-color);
+      color: var(--theme-color);
+      font-size: 1.6rem;
+      font-weight: 500;
+      border-bottom: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+                  inset 0 1px 0 var(--shadow-light);
+    }
+
+    /* 简约内容区域 */
+    .content {
+      background: #ffffff !important;
+    }
+
+    .markdown-section h1,
+    .markdown-section h2,
+    .markdown-section h3,
+    .markdown-section h4,
+    .markdown-section h5,
+    .markdown-section h6 {
+      color: var(--text-color-base) !important;
+      font-weight: 400 !important;
+    }
+
+    .markdown-section h1 {
+      color: var(--text-color-base) !important;
+      font-size: 2rem !important;
+      font-weight: 300 !important;
+      border-bottom: 1px solid #e5e7eb !important;
+      padding-bottom: 0.5rem !important;
+    }
+
+    .markdown-section h2 {
+      color: var(--text-color-base) !important;
+      border-bottom: 1px solid #e5e7eb !important;
+      padding-bottom: 0.3rem !important;
+      font-weight: 400 !important;
+    }
+
+    .markdown-section p,
+    .markdown-section li {
+      color: var(--text-color-base) !important;
+      line-height: 1.6 !important;
+    }
+
+    .markdown-section a {
+      color: var(--theme-color) !important;
+      text-decoration: none !important;
+    }
+
+    .markdown-section a:hover {
+      color: var(--theme-color) !important;
+      text-decoration: underline !important;
+    }
+
+    /* 简约首页背景 */
+    .cover {
+      background: #ffffff !important;
+    }
+
+    .cover h1 {
+      color: var(--text-color-base) !important;
+      font-weight: 300 !important;
+      font-size: 3.5rem !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .cover p {
+      color: var(--text-color-secondary) !important;
+      font-size: 1.2rem !important;
+      font-weight: 300 !important;
+    }
+
+    .cover ul {
+      color: var(--text-color-secondary) !important;
+      font-size: 1rem !important;
+    }
+
+    .cover ul li {
+      color: var(--text-color-secondary) !important;
+      font-weight: 400 !important;
+      margin: 0.5rem 0 !important;
+    }
+
+    .cover a {
+      color: var(--theme-color) !important;
+      background: transparent !important;
+      border: 1px solid var(--theme-color) !important;
+      border-radius: 4px !important;
+      padding: 10px 20px !important;
+      text-decoration: none !important;
+      transition: all 0.2s ease !important;
+      font-weight: 400 !important;
+      margin: 0 8px !important;
+    }
+
+    .cover a:hover {
+      background: var(--theme-color) !important;
+      color: white !important;
+    }
+
+    /* 简约导航菜单样式 */
+    .sidebar ul li {
+      margin: 0 !important;
+    }
+
+    .sidebar ul li a {
+      padding: 8px 16px !important;
+      margin: 1px 0 !important;
+      border-radius: 0 !important;
+      transition: all 0.2s ease !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      font-weight: 400 !important;
+    }
+
+    .sidebar ul li a:hover {
+      background: transparent !important;
+      color: var(--theme-color) !important;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .sidebar ul li.active > a {
+      background: transparent !important;
+      color: var(--theme-color) !important;
+      font-weight: 500 !important;
+      box-shadow: none !important;
+      border-left: 2px solid var(--theme-color) !important;
+      padding-left: 14px !important;
+    }
+
+    /* 子菜单样式 */
+    .sidebar ul li ul {
+      margin-left: 16px !important;
+    }
+
+    .sidebar ul li ul li a {
+      font-size: 13px !important;
+      padding: 6px 12px !important;
+      color: var(--text-color-secondary) !important;
+    }
+
+    /* 首页 Logo 简约样式 */
+    .cover img {
+      border-radius: 8px !important;
+      box-shadow: none !important;
+      max-width: 120px !important;
+    }
+
+    /* 首页按钮组布局 */
+    .cover .cover-main > p:last-child {
+      display: flex !important;
+      gap: 12px !important;
+      justify-content: center !important;
+      flex-wrap: wrap !important;
+      margin-top: 2rem !important;
+    }
+
+    /* 侧边栏标题简约样式 */
+    .sidebar > h1 a {
+      color: var(--theme-color) !important;
+      text-decoration: none !important;
+    }
+
+    .sidebar > h1 a:hover {
+      color: var(--theme-color) !important;
+      opacity: 0.8 !important;
+    }
+
+    /* 新拟物化按钮样式 */
+    .neu-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      background: var(--base-background-color);
+      color: var(--text-color-base);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+      outline: none;
+      text-decoration: none;
+      min-height: 40px;
+      margin: 4px;
+    }
+
+    .neu-button:hover {
+      box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
+      transform: translateY(1px);
+    }
+
+    .neu-button:active {
+      box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+      transform: translateY(2px);
+    }
+
+    /* 按钮变体 */
+    .neu-button--primary {
+      background: var(--theme-color);
+      color: white;
+      box-shadow: 5px 5px 10px #5855d8, -5px -5px 10px #6e77ff;
+    }
+
+    .neu-button--success {
+      background: #10b981;
+      color: white;
+      box-shadow: 5px 5px 10px #0ea574, -5px -5px 10px #12d58e;
+    }
+
+    .neu-button--warning {
+      background: #f59e0b;
+      color: white;
+      box-shadow: 5px 5px 10px #dc8b05, -5px -5px 10px #ffb115;
+    }
+
+    .neu-button--danger {
+      background: #ef4444;
+      color: white;
+      box-shadow: 5px 5px 10px #dc2626, -5px -5px 10px #f87171;
+    }
+
+    .neu-button--small {
+      padding: 8px 16px;
+      font-size: 12px;
+      min-height: 32px;
+    }
+
+    .neu-button--large {
+      padding: 16px 32px;
+      font-size: 16px;
+      min-height: 48px;
+    }
+
+    /* 代码块新拟物化样式 */
+    pre[data-lang] {
+      background: #2d3748;
+      border-radius: 12px;
+      box-shadow: inset 4px 4px 8px rgba(0,0,0,0.3), inset -4px -4px 8px rgba(255,255,255,0.05);
+    }
+
+    .token.keyword { color: #c792ea; }
+    .token.string { color: #c3e88d; }
+    .token.comment { color: #546e7a; }
+    .token.number { color: #f78c6c; }
+    .token.operator { color: #89ddff; }
+
+    /* 简约演示容器 */
+    .demo-container {
+      margin: 20px 0;
+      padding: 20px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 响应式设计 */
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-300px);
+        transition: transform 0.25s ease-out;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
+
+    /* 自定义滚动条 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--base-background-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--shadow-dark);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-color-tertiary);
+    }
+  </style>
+</head>
+<body>
+  <div id="app">正在加载文档...</div>
+
+  <script>
+    window.$docsify = {
+      name: 'Momo UI',
+      repo: '',
+      loadSidebar: true,
+      loadNavbar: true,
+      coverpage: true,
+      onlyCover: false,
+      auto2top: true,
+      maxLevel: 4,
+      subMaxLevel: 3,
+
+      // 搜索配置
+      search: 'auto',
+
+
+    };
+
+    // 初始化按钮演示
+    function initButtonDemos() {
+      // 这里可以添加初始化演示按钮的逻辑
+      console.log('初始化按钮演示');
+    }
+
+    // 简化版 Button 类
+    class Button {
+      constructor(options = {}) {
+        this.options = {
+          text: '按钮',
+          type: 'default',
+          size: 'medium',
+          disabled: false,
+          loading: false,
+          ...options
+        };
+        this.element = this.createElement();
+      }
+
+      createElement() {
+        const button = document.createElement('button');
+        button.className = this.getClassName();
+        button.textContent = this.options.text;
+        button.disabled = this.options.disabled;
+
+        if (this.options.onClick) {
+          button.addEventListener('click', this.options.onClick);
+        }
+
+        return button;
+      }
+
+      getClassName() {
+        let classes = ['neu-button'];
+
+        if (this.options.type !== 'default') {
+          classes.push(`neu-button--${this.options.type}`);
+        }
+
+        if (this.options.size !== 'medium') {
+          classes.push(`neu-button--${this.options.size}`);
+        }
+
+        return classes.join(' ');
+      }
+
+      appendTo(container) {
+        if (typeof container === 'string') {
+          container = document.querySelector(container);
+        }
+        if (container) {
+          container.appendChild(this.element);
+        }
+        return this;
+      }
+    }
+
+    // 全局可用
+    window.Button = Button;
+  </script>
+
+  <!-- Docsify 核心 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+
+  <!-- 搜索插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+
+  <!-- 代码高亮 -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-css.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
+
+  <!-- 其他插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+</body>
+</html>

@@ -1,17 +1,22 @@
 {
-  "name": "momo-ui",
+  "name": "momo-ui-monorepo",
   "version": "1.0.0",
-  "description": "一个现代化的新拟物化风格组件库",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "一个现代化的新拟物化风格组件库 Monorepo",
+  "private": true,
   "scripts": {
-    "build": "webpack --mode production && tsc --emitDeclarationOnly",
-    "dev": "webpack serve --mode development",
-    "demo": "webpack serve --config webpack.demo.js --mode development",
-    "type-check": "tsc --noEmit"
+    "build": "pnpm -r build",
+    "build:ui": "pnpm --filter @momo-ui/core build",
+    "build:demo": "pnpm --filter @momo-ui/demo build",
+    "build:docs": "pnpm --filter @momo-ui/docs build",
+    "dev:ui": "pnpm --filter @momo-ui/core dev",
+    "dev:demo": "pnpm --filter @momo-ui/demo dev",
+    "dev:docs": "pnpm --filter @momo-ui/docs dev",
+    "type-check": "pnpm -r type-check",
+    "clean": "pnpm -r exec rm -rf dist demo-dist node_modules/.cache",
+    "install-all": "pnpm install"
   },
-  "keywords": ["neumorphism", "ui", "components", "css", "typescript"],
-  "author": "Your Name",
+  "keywords": ["neumorphism", "ui", "components", "css", "typescript", "monorepo"],
+  "author": "Momo UI Team",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.22.0",
@@ -30,5 +35,6 @@
     "webpack": "^5.88.0",
     "webpack-cli": "^5.1.0",
     "webpack-dev-server": "^4.15.0"
-  }
+  },
+  "packageManager": "pnpm@8.0.0"
 }

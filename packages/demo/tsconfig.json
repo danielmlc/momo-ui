@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@momo-ui/core": ["../momo-ui/src/index.ts"],
+      "@momo-ui/core/*": ["../momo-ui/src/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "demo-dist"
+  ]
+}

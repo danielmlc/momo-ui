@@ -1,6 +1,6 @@
 // 导入组件库
 import { Button } from '@momo-ui/core';
-import type { ButtonComponent } from '@momo-ui/core/src/types';
+import type { ButtonComponent } from '@momo-ui/core';
 
 // 等待页面加载完成
 document.addEventListener('DOMContentLoaded', function(): void {

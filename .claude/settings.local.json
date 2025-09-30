@@ -14,7 +14,8 @@
       "Bash(npx tsc:*)",
       "Bash(npm run dev:*)",
       "Bash(node:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(pnpm type-check:*)"
     ],
     "deny": [],
     "ask": []

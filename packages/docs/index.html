@@ -42,16 +42,21 @@
     }
 
     .markdown-section {
-      max-width: none !important;
-      padding: 30px 30px 40px 30px !important;
+      max-width: 1000px !important;
+      padding: 40px 50px 50px 50px !important;
+      background: #2d3748 !important;
+      margin: 20px auto !important;
+      border-radius: 16px !important;
+      box-shadow: 6px 6px 16px var(--shadow-dark),
+                  -6px -6px 16px var(--shadow-light) !important;
+      line-height: 1.8 !important;
     }
 
-    /* 新拟物化侧边栏 */
+    /* 简约侧边栏 */
     .sidebar {
       background: var(--base-background-color) !important;
       border-right: none !important;
-      box-shadow: 6px 0 20px rgba(0, 0, 0, 0.1),
-                  inset 2px 0 4px var(--shadow-light) !important;
+      box-shadow: none !important;
     }
 
     .sidebar ul li a {
@@ -91,13 +96,11 @@
       font-size: 1.6rem;
       font-weight: 500;
       border-bottom: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                  inset 0 1px 0 var(--shadow-light);
     }
 
-    /* 简约内容区域 */
+    /* 新拟物化内容区域 */
     .content {
-      background: #ffffff !important;
+      background: var(--base-background-color) !important;
     }
 
     .markdown-section h1,
@@ -106,29 +109,71 @@
     .markdown-section h4,
     .markdown-section h5,
     .markdown-section h6 {
-      color: var(--text-color-base) !important;
+      color: #ffffff !important;
       font-weight: 400 !important;
     }
 
     .markdown-section h1 {
-      color: var(--text-color-base) !important;
-      font-size: 2rem !important;
-      font-weight: 300 !important;
-      border-bottom: 1px solid #e5e7eb !important;
-      padding-bottom: 0.5rem !important;
+      color: #ffffff !important;
+      font-size: 2.2rem !important;
+      font-weight: 500 !important;
+      border-bottom: 2px solid var(--theme-color) !important;
+      padding-bottom: 0.8rem !important;
+      margin-bottom: 1.5rem !important;
+      margin-top: 2rem !important;
     }
 
     .markdown-section h2 {
-      color: var(--text-color-base) !important;
-      border-bottom: 1px solid #e5e7eb !important;
-      padding-bottom: 0.3rem !important;
-      font-weight: 400 !important;
+      color: #ffffff !important;
+      font-size: 1.6rem !important;
+      border-bottom: 1px solid #4a5568 !important;
+      padding-bottom: 0.5rem !important;
+      font-weight: 500 !important;
+      margin-bottom: 1.2rem !important;
+      margin-top: 1.8rem !important;
     }
 
-    .markdown-section p,
+    .markdown-section h3 {
+      color: #ffffff !important;
+      font-size: 1.3rem !important;
+      font-weight: 500 !important;
+      margin-bottom: 1rem !important;
+      margin-top: 1.5rem !important;
+    }
+
+    .markdown-section p {
+      color: #e2e8f0 !important;
+      line-height: 1.8 !important;
+      margin-bottom: 1.2rem !important;
+      font-size: 1rem !important;
+    }
+
     .markdown-section li {
-      color: var(--text-color-base) !important;
-      line-height: 1.6 !important;
+      color: #e2e8f0 !important;
+      line-height: 1.7 !important;
+      margin-bottom: 0.5rem !important;
+    }
+
+    .markdown-section ul, .markdown-section ol {
+      margin-bottom: 1.2rem !important;
+      padding-left: 1.5rem !important;
+    }
+
+    .markdown-section blockquote {
+      border-left: 4px solid var(--theme-color) !important;
+      background: #1a202c !important;
+      padding: 1rem 1.5rem !important;
+      margin: 1.5rem 0 !important;
+      border-radius: 0 8px 8px 0 !important;
+      color: #e2e8f0 !important;
+    }
+
+    .markdown-section code {
+      background: #1a202c !important;
+      padding: 0.2rem 0.4rem !important;
+      border-radius: 4px !important;
+      font-size: 0.9rem !important;
+      color: #f687b3 !important;
     }
 
     .markdown-section a {
@@ -141,9 +186,9 @@
       text-decoration: underline !important;
     }
 
-    /* 简约首页背景 */
+    /* 首页背景 */
     .cover {
-      background: #ffffff !important;
+      background: var(--base-background-color) !important;
     }
 
     .cover h1 {
@@ -151,6 +196,13 @@
       font-weight: 300 !important;
       font-size: 3.5rem !important;
       margin-bottom: 1rem !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      border: none !important;
+      filter: none !important;
+      transform: none !important;
+      backdrop-filter: none !important;
     }
 
     .cover p {
@@ -171,20 +223,28 @@
     }
 
     .cover a {
-      color: var(--theme-color) !important;
-      background: transparent !important;
-      border: 1px solid var(--theme-color) !important;
-      border-radius: 4px !important;
-      padding: 10px 20px !important;
+      color: var(--text-color-base) !important;
+      background: var(--base-background-color) !important;
+      border: none !important;
+      border-radius: 12px !important;
+      padding: 12px 24px !important;
       text-decoration: none !important;
-      transition: all 0.2s ease !important;
-      font-weight: 400 !important;
+      transition: all 0.3s ease !important;
+      font-weight: 500 !important;
       margin: 0 8px !important;
+      box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light) !important;
+      display: inline-block !important;
     }
 
     .cover a:hover {
-      background: var(--theme-color) !important;
-      color: white !important;
+      box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light) !important;
+      transform: translateY(1px) !important;
+      color: var(--theme-color) !important;
+    }
+
+    .cover a:active {
+      box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light) !important;
+      transform: translateY(2px) !important;
     }
 
     /* 简约导航菜单样式 */
@@ -200,6 +260,9 @@
       background: transparent !important;
       box-shadow: none !important;
       font-weight: 400 !important;
+      color: var(--text-color-base) !important;
+      border-bottom: none !important;
+      display: block !important;
     }
 
     .sidebar ul li a:hover {
@@ -207,6 +270,7 @@
       color: var(--theme-color) !important;
       transform: none !important;
       box-shadow: none !important;
+      text-decoration: none !important;
     }
 
     .sidebar ul li.active > a {
@@ -234,6 +298,8 @@
       border-radius: 8px !important;
       box-shadow: none !important;
       max-width: 120px !important;
+      background: transparent !important;
+      padding: 0 !important;
     }
 
     /* 首页按钮组布局 */
@@ -338,18 +404,20 @@
     .token.number { color: #f78c6c; }
     .token.operator { color: #89ddff; }
 
-    /* 简约演示容器 */
+    /* 新拟物化演示容器 */
     .demo-container {
       margin: 20px 0;
       padding: 20px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
+      background: var(--base-background-color);
+      border: none;
+      border-radius: 16px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
       justify-content: center;
+      box-shadow: inset 4px 4px 12px var(--shadow-dark),
+                  inset -4px -4px 12px var(--shadow-light);
     }
 
     /* 响应式设计 */
